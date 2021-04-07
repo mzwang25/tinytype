@@ -1,26 +1,25 @@
 <html>
-  <h1> Tiny Type! </h1>
-  <img src="gestures.png"></img> 
+  <h1 class="inst"> > / | \ < | </h1>
   <br>
   <div class="grid-container">
     <div>
-      ABCDEF
+      A B C D E F
       <canvas id="canv0" class="inputrect"></canvas>
     </div>
     <div>
-      GHIJKL
+      G H I J K L
       <canvas id="canv1" class="inputrect"></canvas>
     </div>
     <div>
-      MNOPQR
+      M N O P Q R
       <canvas id="canv2" class="inputrect"></canvas>
     </div>
     <div>
-      STUVWX
+      S T U V W X
       <canvas id="canv3" class="inputrect"></canvas>
     </div>
     <div>
-      YZ
+      Y Z
       <canvas id="canv4" class="inputrect"></canvas>
     </div>
   </div>
@@ -42,20 +41,51 @@
   {
     display:grid;
     grid-template-columns: 52px 52px 52px 52px 52px;
-    font-size: 11px;
+    font-size: 8.5px;
     text-align: center;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    opacity: 60%;
   }
 
   textarea
   {
     margin-top: 20px;
-    width: 250;
+    width: 258;
     height: 100;
+    resize: none;
+    background-color: rgba(172, 170, 170, 0.473);
+    color:white;
+    opacity: 30%;
+    font-size: 15px;
+  }
+
+  html, body 
+  {
+    height: 100%;
+    background-color: #444444;
+  }
+
+  html 
+  {
+      display: table;
+      margin: auto;
+  }
+
+  body 
+  {
+    padding-top: 20px;
+    display: table-cell;
+    color: white;
+  }
+
+  .inst
+  {
+    text-align: center;
+    opacity: 60%;
   }
 
 </style>
@@ -106,6 +136,8 @@
       let x = e.clientX - rect.left, y = e.clientY - rect.top;
 
       decide(i, x-xy0.x, y-xy0.y);
+      document.getElementById("text")
+
     });
 
     canv[i].addEventListener("mouseout", (e) => {
@@ -180,4 +212,6 @@ var textdelete = () => {
     document.getElementById("text").value 
        = document.getElementById("text").value.slice(0,-1);
 }
+
+
 </script>
