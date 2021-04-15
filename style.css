@@ -1,0 +1,52 @@
+  .inputrect {
+    height: 50px;
+    width: 50px;
+    background-color: rgba(172, 170, 170, 0.473);
+    display: block;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 52px 52px 52px 52px 52px;
+    font-size: 8.5px;
+    text-align: center;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 60%;
+  }
+
+  textarea {
+    margin-top: 20px;
+    width: 258;
+    height: 100;
+    resize: none;
+    background-color: rgba(172, 170, 170, 0.473);
+    color: white;
+    opacity: 30%;
+    font-size: 15px;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background-color: #444444;
+  }
+
+  html {
+    display: table;
+    margin: auto;
+  }
+
+  body {
+    padding-top: 20px;
+    display: table-cell;
+    color: white;
+  }
+
+  .inst {
+    text-align: center;
+    opacity: 60%;
+  }

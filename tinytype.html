@@ -1,206 +1,35 @@
 <html>
-<h1 class="inst"> > / | \ < | </h1>
-    <br>
-    <div class="grid-container">
-      <div>
-        A B C D E F
-        <canvas id="canv0" class="inputrect"></canvas>
-      </div>
-      <div>
-        G H I J K L
-        <canvas id="canv1" class="inputrect"></canvas>
-      </div>
-      <div>
-        M N O P Q R
-        <canvas id="canv2" class="inputrect"></canvas>
-      </div>
-      <div>
-        S T U V W X
-        <canvas id="canv3" class="inputrect"></canvas>
-      </div>
-      <div>
-        Y Z
-        <canvas id="canv4" class="inputrect"></canvas>
-      </div>
-    </div>
+  <head>
+    <link rel="stylesheet" href="style.css"></link>
+    <script src="script.js"></script>
+  </head>
 
-    <textarea id="text"></textarea>
+  <body onload="startup()">
+    <h1 class="inst"> > / | \ < | </h1>
+        <br>
+        <div class="grid-container">
+          <div>
+            A B C D E F
+            <canvas id="canv0" class="inputrect"></canvas>
+          </div>
+          <div>
+            G H I J K L
+            <canvas id="canv1" class="inputrect"></canvas>
+          </div>
+          <div>
+            M N O P Q R
+            <canvas id="canv2" class="inputrect"></canvas>
+          </div>
+          <div>
+            S T U V W X
+            <canvas id="canv3" class="inputrect"></canvas>
+          </div>
+          <div>
+            Y Z
+            <canvas id="canv4" class="inputrect"></canvas>
+          </div>
+        </div>
 
+        <textarea id="text"></textarea>
+  </body>
 </html>
-
-<style>
-  .inputrect {
-    height: 50px;
-    width: 50px;
-    background-color: rgba(172, 170, 170, 0.473);
-    display: block;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: 52px 52px 52px 52px 52px;
-    font-size: 8.5px;
-    text-align: center;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    opacity: 60%;
-  }
-
-  textarea {
-    margin-top: 20px;
-    width: 258;
-    height: 100;
-    resize: none;
-    background-color: rgba(172, 170, 170, 0.473);
-    color: white;
-    opacity: 30%;
-    font-size: 15px;
-  }
-
-  html,
-  body {
-    height: 100%;
-    background-color: #444444;
-  }
-
-  html {
-    display: table;
-    margin: auto;
-  }
-
-  body {
-    padding-top: 20px;
-    display: table-cell;
-    color: white;
-  }
-
-  .inst {
-    text-align: center;
-    opacity: 60%;
-  }
-</style>
-
-<script>
-  var canv = new Array(5);
-  var ctx = new Array(5);
-  var drawing = new Array(5);
-  var xy0 = null;
-  var letters = [
-    ['a', 'b', 'c', 'd', 'e', 'f'],
-    ['g', 'h', 'i', 'j', 'k', 'l'],
-    ['m', 'n', 'o', 'p', 'q', 'r'],
-    ['s', 't', 'u', 'v', 'w', 'x'],
-    ['y', 'z']
-  ];
-
-  for (var i = 0; i < 5; i++) {
-    canv[i] = document.getElementById("canv" + i);
-    ctx[i] = canv[i].getContext("2d");
-    ctx[i].canvas.width = 50;
-    ctx[i].canvas.height = 50;
-    drawing[i] = false;
-  }
-
-  var attachListeners = (i) => {
-    canv[i].addEventListener("mousedown", (e) => {
-      ctx[i].beginPath();
-      drawing[i] = true;
-
-      let rect = canv[i].getBoundingClientRect();
-      let x = e.clientX - rect.left, y = e.clientY - rect.top;
-      xy0 = { x: x, y: y }
-
-    });
-
-    canv[i].addEventListener("mouseup", (e) => {
-      if (!drawing[i])
-        return;
-
-      ctx[i].closePath();
-      ctx[i].clearRect(0, 0, 50, 50);
-      drawing[i] = false;
-
-      let rect = canv[i].getBoundingClientRect();
-      let x = e.clientX - rect.left, y = e.clientY - rect.top;
-
-      decide(i, x - xy0.x, y - xy0.y);
-      document.getElementById("text")
-
-    });
-
-    canv[i].addEventListener("mouseout", (e) => {
-      if (!drawing[i])
-        return;
-
-      ctx[i].closePath();
-      ctx[i].clearRect(0, 0, 50, 50);
-      drawing[i] = false;
-
-      let rect = canv[i].getBoundingClientRect();
-      let x = e.clientX - rect.left, y = e.clientY - rect.top;
-
-      decide(i, x - xy0.x, y - xy0.y);
-
-    });
-
-    canv[i].addEventListener("mousemove", (e) => {
-      if (!drawing[i])
-        return;
-
-      let rect = canv[i].getBoundingClientRect();
-      let x = e.clientX - rect.left, y = e.clientY - rect.top;
-      ctx[i].lineTo(x, y);
-      ctx[i].moveTo(x, y);
-      ctx[i].stroke();
-    });
-  }
-
-  attachListeners(0);
-  attachListeners(1);
-  attachListeners(2);
-  attachListeners(3);
-  attachListeners(4);
-
-  var decide = (id, dx, dy) => {
-    if (Math.abs(dy) < 10) {
-      if (dx > 0)
-        appendText(letters[id][0]);
-      else
-        appendText(letters[id][4]);
-
-      return;
-    }
-
-    if (Math.abs(dx) < 10) {
-      if (dy > 0)
-        appendText(letters[id][5]);
-      else
-        appendText(letters[id][2]);
-
-      return;
-    }
-
-    if (dx > 0 && dy < 0)
-      appendText(letters[id][1]);
-    else if (dx < 0 && dy < 0)
-      appendText(letters[id][3]);
-    else if (dx > 0 && dy > 0)
-      appendText(" ");
-    else
-      textdelete();
-  }
-
-  var appendText = (char) => {
-    document.getElementById("text").value += char;
-  }
-
-  var textdelete = () => {
-    document.getElementById("text").value
-      = document.getElementById("text").value.slice(0, -1);
-  }
-
-
-</script>
