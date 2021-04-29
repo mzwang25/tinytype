@@ -9,9 +9,11 @@ var letters = [
   ['s', 't', 'u', 'v', 'w', 'x'],
   ['y', 'z']
 ];
+var pathx = [];
+var pathy = [];
 
 var startup = () => {
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 6; i++) {
     canv[i] = document.getElementById("canv" + i);
     ctx[i] = canv[i].getContext("2d");
     ctx[i].canvas.width = 50;
@@ -41,7 +43,13 @@ var startup = () => {
       let rect = canv[i].getBoundingClientRect();
       let x = e.clientX - rect.left, y = e.clientY - rect.top;
 
-      decide(i, x - xy0.x, y - xy0.y);
+      if(i === 5) {
+        emojiDecide("hello")
+      }
+      else {
+        decide(i, x - xy0.x, y - xy0.y);
+      }
+
       document.getElementById("text")
 
     });
@@ -57,7 +65,12 @@ var startup = () => {
       let rect = canv[i].getBoundingClientRect();
       let x = e.clientX - rect.left, y = e.clientY - rect.top;
 
-      decide(i, x - xy0.x, y - xy0.y);
+      if(i === 5) {
+        emojiDecide("hello")
+      }
+      else {
+        decide(i, x - xy0.x, y - xy0.y);
+      }
 
     });
 
@@ -69,6 +82,8 @@ var startup = () => {
       let x = e.clientX - rect.left, y = e.clientY - rect.top;
       ctx[i].lineTo(x, y);
       ctx[i].moveTo(x, y);
+      pathx.push(x)
+      pathy.push(y)
       ctx[i].stroke();
     });
   }
@@ -78,7 +93,9 @@ var startup = () => {
   attachListeners(2);
   attachListeners(3);
   attachListeners(4);
+  attachListeners(5);
 }
+
 
 var decide = (id, dx, dy) => {
   if (Math.abs(dy) < 10) {
@@ -116,4 +133,50 @@ var appendText = (char) => {
 var textdelete = () => {
   document.getElementById("text").value
     = document.getElementById("text").value.slice(0, -1);
+}
+
+var emojiDecide = (v) => {
+  //console.log(pathx);
+  //console.log(pathy);
+
+
+  var x1 = pathx[pathx.length - 1]
+  var y1 = pathy[pathx.length - 1]
+  var x0 = pathx[0]
+  var y0 = pathy[0]
+
+  var d = (x1-x0)*(x1-x0) + (y1-y0)*(y1-y0);
+  var dy = 0
+
+  var ybounces = 0;
+  var dir = Math.sign(pathy[1]-pathy[0])
+  for(var i = 2; i < pathy.length; i++)
+  {
+    if(Math.sign(pathy[i] - pathy[i-1]) !== dir && Math.abs(pathy[i] - pathy[i-1]) > 0.1)
+    {
+      dir = Math.sign(pathy[i] - pathy[i-1]);
+      ybounces += 1;
+    }
+
+  }
+
+
+  if(d < 100)
+  {
+    if(pathx[1] - pathx[0] > 0)
+      appendText(String.fromCodePoint(0x1F389));
+    else if (ybounces > 2)
+      appendText(String.fromCodePoint(0x1F60D));
+    else 
+      appendText(String.fromCodePoint(0x1F631));
+  }
+  else
+  {
+    if(pathy[3] < pathy[0])
+      appendText(String.fromCodePoint(0x1F622));
+    else
+      appendText(String.fromCodePoint(0x1F600));
+  }
+  pathx = [];
+  pathy = [];
 }
