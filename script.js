@@ -163,9 +163,9 @@ var emojiDecide = (v) => {
 
   if(d < 100)
   {
-    if(pathx[1] - pathx[0] > 0)
+    if(pathx[5] - pathx[0] > 0)
       appendText(String.fromCodePoint(0x1F389));
-    else if (ybounces > 2)
+    else if (ybounces > 3)
       appendText(String.fromCodePoint(0x1F60D));
     else 
       appendText(String.fromCodePoint(0x1F631));
