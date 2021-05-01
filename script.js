@@ -203,7 +203,7 @@ var emojiDecide = (v) => {
 
   if(d < 100)
   {
-    if(getStandardDeviation(dtheta) < 16)
+    if(getStandardDeviation(dtheta) < 20)
     {
       appendText(String.fromCodePoint(0x1F631));
     }
