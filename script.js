@@ -16,8 +16,8 @@ var startup = () => {
   for (var i = 0; i < 6; i++) {
     canv[i] = document.getElementById("canv" + i);
     ctx[i] = canv[i].getContext("2d");
-    ctx[i].canvas.width = 50;
-    ctx[i].canvas.height = 50;
+    ctx[i].canvas.width = 80;
+    ctx[i].canvas.height = 80;
     drawing[i] = false;
   }
 
@@ -37,7 +37,7 @@ var startup = () => {
         return;
 
       ctx[i].closePath();
-      ctx[i].clearRect(0, 0, 50, 50);
+      ctx[i].clearRect(0, 0, 80, 80);
       drawing[i] = false;
 
       let rect = canv[i].getBoundingClientRect();
@@ -99,6 +99,8 @@ var startup = () => {
 
 
 var decide = (id, dx, dy) => {
+  pathx = []
+  pathy = []
   if (Math.abs(dy) < 10) {
     if (dx > 0)
       appendText(letters[id][0]);

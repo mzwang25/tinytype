@@ -1,13 +1,13 @@
   .inputrect {
-    height: 50px;
-    width: 50px;
+    height: 80px;
+    width: 80px;
     background-color: rgba(172, 170, 170, 0.473);
     display: block;
   }
 
   .grid-container {
     display: grid;
-    grid-template-columns: 52px 52px 52px 52px 52px 52px;
+    grid-template-columns: 82px 82px 82px 82px 82px 82px;
     font-size: 8.5px;
     text-align: center;
     -moz-user-select: none;
@@ -20,13 +20,13 @@
 
   textarea {
     margin-top: 20px;
-    width: 310;
-    height: 100;
+    width: 490;
+    height: 200;
     resize: none;
     background-color: rgba(172, 170, 170, 0.473);
     color: white;
     opacity: 30%;
-    font-size: 15px;
+    font-size: 35px;
   }
 
   html,
