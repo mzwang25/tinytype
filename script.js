@@ -66,7 +66,8 @@ var startup = () => {
       let x = e.clientX - rect.left, y = e.clientY - rect.top;
 
       if(i === 5) {
-        emojiDecide("hello")
+        pathx = [];
+        pathy = [];
       }
       else {
         decide(i, x - xy0.x, y - xy0.y);
@@ -136,10 +137,49 @@ var textdelete = () => {
 }
 
 var emojiDecide = (v) => {
-  //console.log(pathx);
-  //console.log(pathy);
+
+  var vecx = []
+  var vecy = []
+
+  for(var i = 5; i < pathx.length; i+=5)
+  {
+    vecx.push(pathx[i] - pathx[i-5])
+    vecy.push(pathy[i] - pathy[i-5])
+  }
 
 
+  var dtheta = []
+  for(var i = 1; i < vecx.length; i++)
+  {
+    var v0x = vecx[i-1]
+    var v1x = vecx[i]
+    var v0y = vecy[i-1]
+    var v1y = vecy[i]
+
+    var dot = v0x * v1x + v0y * v1y;
+    var mag0 = Math.sqrt(v0x * v0x + v0y * v0y)
+    var mag1 = Math.sqrt(v1x * v1x + v1y * v1y)
+
+    var theta = Math.acos(dot / (mag0 * mag1));
+
+    if(!isNaN(theta))
+      dtheta.push(theta * 180/Math.PI)
+  }
+
+
+  var sum = 0;
+  for(var i = 0; i < dtheta.length; i++)
+  {
+    sum += dtheta[i];
+  }
+
+  function getStandardDeviation (array) {
+    const n = array.length
+    const mean = array.reduce((a, b) => a + b) / n
+    return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+  }
+
+  
   var x1 = pathx[pathx.length - 1]
   var y1 = pathy[pathx.length - 1]
   var x0 = pathx[0]
@@ -163,12 +203,16 @@ var emojiDecide = (v) => {
 
   if(d < 100)
   {
-    if(pathx[5] - pathx[0] > 0)
-      appendText(String.fromCodePoint(0x1F389));
-    else if (ybounces > 3)
-      appendText(String.fromCodePoint(0x1F60D));
-    else 
+    if(getStandardDeviation(dtheta) < 16)
+    {
       appendText(String.fromCodePoint(0x1F631));
+    }
+    else if (ybounces < 3)
+    {
+      appendText(String.fromCodePoint(0x1F389));
+    }
+    else 
+      appendText(String.fromCodePoint(0x1F60D));
   }
   else
   {
