@@ -59,7 +59,7 @@ var startup = () => {
         return;
 
       ctx[i].closePath();
-      ctx[i].clearRect(0, 0, 50, 50);
+      ctx[i].clearRect(0, 0, 80, 80);
       drawing[i] = false;
 
       let rect = canv[i].getBoundingClientRect();
@@ -202,24 +202,27 @@ var emojiDecide = (v) => {
 
   }
 
+    console.log(getStandardDeviation(dtheta));
 
   if(d < 100)
   {
-    if(getStandardDeviation(dtheta) < 20)
+    if (getStandardDeviation(dtheta) < 25)
     {
       appendText(String.fromCodePoint(0x1F631));
-    }
-    else if (ybounces < 3)
-    {
-      appendText(String.fromCodePoint(0x1F389));
     }
     else 
       appendText(String.fromCodePoint(0x1F60D));
   }
   else
   {
-    if(pathy[3] < pathy[0])
+    if(getStandardDeviation(dtheta) > 25)
+    {
+      appendText(String.fromCodePoint(0x1F389));
+    }
+
+    else if(pathy[3] < pathy[0])
       appendText(String.fromCodePoint(0x1F622));
+
     else
       appendText(String.fromCodePoint(0x1F600));
   }
