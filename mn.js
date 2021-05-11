@@ -20,7 +20,6 @@ async function app() {
     // Capture an image from the web camera.
     for(var i = 0; i < 10; i++) {
       const img = await webcam.capture();
-      console.log(img.print())
 
       // Get the intermediate activation of MobileNet 'conv_preds' and pass that
       // to the KNN classifier.
