@@ -18,18 +18,21 @@ async function app() {
   // index.
   const addExample = async classId => {
     // Capture an image from the web camera.
-    const img = await webcam.capture();
-    console.log(img.print())
+    for(var i = 0; i < 10; i++) {
+      const img = await webcam.capture();
+      console.log(img.print())
 
-    // Get the intermediate activation of MobileNet 'conv_preds' and pass that
-    // to the KNN classifier.
-    const activation = net.infer(img, true);
+      // Get the intermediate activation of MobileNet 'conv_preds' and pass that
+      // to the KNN classifier.
+      const activation = net.infer(img, true);
 
-    // Pass the intermediate activation to the classifier.
-    classifier.addExample(activation, classId);
+      // Pass the intermediate activation to the classifier.
+      classifier.addExample(activation, classId);
 
-    // Dispose the tensor to release the memory.
-    img.dispose();
+      // Dispose the tensor to release the memory.
+      img.dispose();
+    }
+    console.log("Done")
   };
 
   // When clicking a button, add an example for that class.
