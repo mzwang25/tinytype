@@ -4,6 +4,7 @@ const classifier = knnClassifier.create();
 
 async function app() {
   console.log('Loading mobilenet..');
+  webcamElement = document.getElementById('webcam');
 
   // Load the model.
   net = await mobilenet.load();
