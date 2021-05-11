@@ -49,6 +49,9 @@
       img.src = canvas.toDataURL('image/png');
       lastSource = img.src;
       document.body.appendChild(img);
+      canvas.toBlob(function(blob) {
+        saveAs(blob, "image.png");
+      });
 
     }
 
