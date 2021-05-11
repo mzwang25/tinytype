@@ -19,6 +19,7 @@ async function app() {
   const addExample = async classId => {
     // Capture an image from the web camera.
     const img = await webcam.capture();
+    console.log(img.print())
 
     // Get the intermediate activation of MobileNet 'conv_preds' and pass that
     // to the KNN classifier.
@@ -37,6 +38,7 @@ async function app() {
   document.getElementById('class-c').addEventListener('click', () => addExample(2));
   document.getElementById('class-d').addEventListener('click', () => addExample(3));
   document.getElementById('class-e').addEventListener('click', () => addExample(4));
+  document.getElementById('class-f').addEventListener('click', () => addExample(4));
 
   while (true) {
     if (classifier.getNumClasses() > 0) {
@@ -47,7 +49,7 @@ async function app() {
       // Get the most likely class and confidence from the classifier module.
       const result = await classifier.predictClass(activation);
 
-      const classes = ['A', 'B', 'C', 'D', 'E'];
+      const classes = ['Iphone', 'Bottle', 'Cardboard', 'Elephant', 'Ipad', 'Hand'];
       document.getElementById('console').innerText = `
         prediction: ${classes[result.label]}\n
         probability: ${result.confidences[result.label]}
