@@ -50,9 +50,6 @@
       lastSource = img.src;
       document.body.appendChild(img);
 
-      canvas.toBlob(function(blob) {
-        saveAs(blob, "pretty image.png");
-      });
     }
 
     // use MediaDevices API
