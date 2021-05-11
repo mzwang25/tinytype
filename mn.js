@@ -35,8 +35,8 @@ async function app() {
   document.getElementById('class-a').addEventListener('click', () => addExample(0));
   document.getElementById('class-b').addEventListener('click', () => addExample(1));
   document.getElementById('class-c').addEventListener('click', () => addExample(2));
-  document.getElementById('class-d').addEventListener('click', () => addExample(2));
-  document.getElementById('class-e').addEventListener('click', () => addExample(2));
+  document.getElementById('class-d').addEventListener('click', () => addExample(3));
+  document.getElementById('class-e').addEventListener('click', () => addExample(4));
 
   while (true) {
     if (classifier.getNumClasses() > 0) {
