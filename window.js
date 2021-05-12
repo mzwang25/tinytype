@@ -29,8 +29,15 @@ setInterval(() => {
   if(results.length != WINDOW_SIZE - 1)
     return;
 
+  getCount();
+
   if(!readyToDetect)
-    return;
+  {
+    if (count[5] > th) //normal case
+    {
+      readyToDetect = true;
+    }
+  }
 
   var th = 180;
 
