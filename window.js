@@ -27,6 +27,15 @@ var getCount = () => {
 var readyToDetect = false;
 
 setInterval(() => {
+
+  document.getElementsByTagName("html")[0].style.backgroundColor
+
+
+  if(readyToDetect)
+   document.getElementsByTagName("html")[0].style.backgroundColor = 0x450101;
+  else
+    document.getElementsByTagName("html")[0].style.backgroundColor = "red";
+
   if(results.length != WINDOW_SIZE)
     return;
 
