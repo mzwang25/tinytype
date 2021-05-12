@@ -14,7 +14,7 @@ var pathx = [];
 var pathy = [];
 
 var startup = () => {
-
+  app();
   for (var i = 0; i < 6; i++) {
     canv[i] = document.getElementById("canv" + i);
     ctx[i] = canv[i].getContext("2d");

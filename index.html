@@ -2,10 +2,17 @@
   <head>
     <link rel="stylesheet" href="style.css"></link>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+    <script src="mn.js"></script>
   </head>
 
   <body onload="startup()">
-    <h1 class="inst"> &#128512 &#128561 &#127881 &#128525 &#128546</h1>
+    <!-- <h1 class="inst"> &#128512 &#128561 &#127881 &#128525 &#128546</h1> -->
+        <div>
+          <video autoplay playsinline muted id="webcam" width="490" height="224"></video>
+        </div>
         <br>
         <div class="grid-container">
           <div>

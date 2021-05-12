@@ -64,3 +64,31 @@ async function app() {
     await tf.nextFrame();
   }
 }
+
+var save = () => {
+  let dataset = classifier.getClassifierDataset()
+  var datasetObj = {}
+  Object.keys(dataset).forEach((key) => {
+    let data = dataset[key].dataSync();
+    // use Array.from() so when JSON.stringify() it covert to an array string e.g [0.1,-0.2...] 
+    // instead of object e.g {0:"0.1", 1:"-0.2"...}
+    datasetObj[key] = Array.from(data); 
+  });
+  let jsonStr = JSON.stringify(datasetObj)
+  //can be change to other source
+  localStorage.setItem("myData", jsonStr);
+ console.log("saved")
+
+}
+
+var load = () => {
+  //can be change to other source
+ let dataset = localStorage.getItem("myData")
+ let tensorObj = JSON.parse(dataset)
+ //covert back to tensor
+ Object.keys(tensorObj).forEach((key) => {
+   tensorObj[key] = tf.tensor(tensorObj[key], [tensorObj[key].length / 1024, 1024])
+ })
+ classifier.setClassifierDataset(tensorObj);
+ console.log("loaded")
+}
