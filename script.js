@@ -14,7 +14,16 @@ var pathx = [];
 var pathy = [];
 
 var startup = () => {
+
+  if(!localStorage.getItem("myData")) {
+    alert("I need my education! Train Me! (/webcam.html)")
+    return;
+  }
+
+  //launch webcam and detector
   app();
+  load();
+
   for (var i = 0; i < 6; i++) {
     canv[i] = document.getElementById("canv" + i);
     ctx[i] = canv[i].getContext("2d");

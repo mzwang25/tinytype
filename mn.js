@@ -35,12 +35,17 @@ async function app() {
   };
 
   // When clicking a button, add an example for that class.
-  document.getElementById('class-a').addEventListener('click', () => addExample(0));
-  document.getElementById('class-b').addEventListener('click', () => addExample(1));
-  document.getElementById('class-c').addEventListener('click', () => addExample(2));
-  document.getElementById('class-d').addEventListener('click', () => addExample(3));
-  document.getElementById('class-e').addEventListener('click', () => addExample(4));
-  document.getElementById('class-f').addEventListener('click', () => addExample(5));
+  try {
+    document.getElementById('class-a').addEventListener('click', () => addExample(0));
+    document.getElementById('class-b').addEventListener('click', () => addExample(1));
+    document.getElementById('class-c').addEventListener('click', () => addExample(2));
+    document.getElementById('class-d').addEventListener('click', () => addExample(3));
+    document.getElementById('class-e').addEventListener('click', () => addExample(4));
+    document.getElementById('class-f').addEventListener('click', () => addExample(5));
+  }
+  catch {
+  }
+    
 
   while (true) {
     if (classifier.getNumClasses() > 0) {
@@ -52,10 +57,16 @@ async function app() {
       const result = await classifier.predictClass(activation);
 
       const classes = ['Iphone', 'Bottle', 'Cardboard', 'Elephant', 'Ipad', 'Hand'];
-      document.getElementById('console').innerText = `
-        prediction: ${classes[result.label]}\n
-        probability: ${result.confidences[result.label]}
-      `;
+      try {
+        document.getElementById('console').innerText = `
+          prediction: ${classes[result.label]}\n
+          probability: ${result.confidences[result.label]}
+        `;
+      } catch {
+
+      }
+
+      addResult(result.label);
 
       // Dispose the tensor to release the memory.
       img.dispose();

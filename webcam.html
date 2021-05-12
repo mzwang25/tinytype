@@ -4,6 +4,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+    <script src="window.js"></script>
 
   </head>
   <body onload="app()">
@@ -12,14 +13,14 @@
     <!-- Load index.js after the content of the page -->
     <script src="mn.js"></script>
 
-    <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+    <video autoplay playsinline muted id="webcam" width="490" height="224"></video>
 
-    <button id="class-a">Iphone</button>
-    <button id="class-b">Bottle</button>
-    <button id="class-c">Cardboard</button>
-    <button id="class-d">Elephant</button>
-    <button id="class-e">Ipad</button>
-    <button id="class-f">Hand</button>
+    <button id="class-a">A</button>
+    <button id="class-b">B</button>
+    <button id="class-c">C</button>
+    <button id="class-d">D</button>
+    <button id="class-e">E</button>
+    <button id="class-f">F</button>
     <button id="Save" onClick="save()">Save</button>
     <button id="load" onClick="load()">Load</button>
 
