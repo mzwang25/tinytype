@@ -2,7 +2,7 @@ var results = []
 var count = [0,0,0,0,0,0]
 var firstBoot = true
 
-const WINDOW_SIZE = 30;
+const WINDOW_SIZE = 18;
 
 var addResult = (d) => {
   if(results.length >= WINDOW_SIZE) {
@@ -38,7 +38,7 @@ setInterval(() => {
 
   getCount();
 
-  var th = 25;
+  var th = 12;
 
   if(!readyToDetect)
   {
