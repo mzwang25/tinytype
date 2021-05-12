@@ -32,7 +32,7 @@ setInterval(() => {
 
 
   if(readyToDetect)
-   document.getElementsByTagName("html")[0].style.backgroundColor = "#450101";
+   document.getElementsByTagName("html")[0].style.backgroundColor = "cadetblue";
   else
     document.getElementsByTagName("html")[0].style.backgroundColor = "red";
 
