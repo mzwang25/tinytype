@@ -53,34 +53,32 @@ setInterval(() => {
 
   if(count[0] > th)
   {
-    console.log("Ball")
+    handleBall();
     readyToDetect = false;
   }
   else if (count[1] > th)
   {
-    console.log("Pencil")
+    handlePencil();
     readyToDetect = false;
   }
   else if (count[2] > th)
   {
-    console.log("Bottle")
+    handleBottle();
     readyToDetect = false;
   }
   else if (count[3] > th)
   {
-    console.log("Cardboard")
+    handleCardboard();
     readyToDetect = false;
   }
   else if (count[4] > th)
   {
-    console.log("Elephant")
+    handleElephant();
     readyToDetect = false;
   }
   else if (count[5] > th) //normal case
   {
-    console.log("ready")
     readyToDetect = true;
   }
-
 
 }, 20)

@@ -211,4 +211,22 @@ var emojiDecide = (v) => {
   pathy = [];
 };
 
+var handleBall = () => {
+  appendText(String.fromCodePoint(0x26BD));
+}
 
+var handlePencil = () => {
+  appendText(String.fromCodePoint(0x270f));
+}
+
+var handleBottle = () => {
+  appendText(String.fromCodePoint(0x1f37c));
+}
+
+var handleCardboard = () => {
+  appendText(String.fromCodePoint(0x1f4e6));
+}
+
+var handleElephant = () => {
+  appendText(String.fromCodePoint(0x1f418));
+}
