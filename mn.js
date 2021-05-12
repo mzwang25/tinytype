@@ -32,7 +32,6 @@ async function app() {
       // Dispose the tensor to release the memory.
       img.dispose();
     }
-    console.log("Done")
   };
 
   // When clicking a button, add an example for that class.
