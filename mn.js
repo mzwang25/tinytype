@@ -1,3 +1,10 @@
+/**
+ * Borrowed From
+ * https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-codelab/index.html#0
+ */
+
+
+
 let webcamElement;
 let net;
 const classifier = knnClassifier.create();
