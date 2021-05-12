@@ -1,6 +1,7 @@
 let webcamElement;
 let net;
 const classifier = knnClassifier.create();
+const classes = ['Ball', 'Pencil', 'Bottle', 'Cardboard', 'Elephant', 'Nothing'];
 
 async function app() {
   console.log('Loading mobilenet..');
@@ -56,7 +57,6 @@ async function app() {
       // Get the most likely class and confidence from the classifier module.
       const result = await classifier.predictClass(activation);
 
-      const classes = ['Iphone', 'Bottle', 'Cardboard', 'Elephant', 'Ipad', 'Hand'];
       try {
         document.getElementById('console').innerText = `
           prediction: ${classes[result.label]}\n
