@@ -15,8 +15,6 @@ var pathy = [];
 
 var startup = () => {
 
-  Document.html.style.backgroundColor = "red";
-
   if(!localStorage.getItem("myData")) {
     alert("I need my education! Train Me! (/webcam.html)")
     return;
