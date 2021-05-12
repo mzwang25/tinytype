@@ -1,5 +1,6 @@
 var results = []
 var count = [0,0,0,0,0,0]
+var firstBoot = true
 
 const WINDOW_SIZE = 200;
 
@@ -14,11 +15,11 @@ var addResult = (d) => {
 }
 
 var getCount = () => {
-  var x = new Array(results);
+  var x = [...results];
   count = [0, 0, 0, 0, 0, 0]
   for(var i = 0; i < x.length; i++)
   {
-    count[x[i]] += 1;
+    count[x[i]] = count[x[i]] + 1;
   }
 
 }
@@ -26,10 +27,18 @@ var getCount = () => {
 var readyToDetect = false;
 
 setInterval(() => {
-  if(results.length != WINDOW_SIZE - 1)
+  if(results.length != WINDOW_SIZE)
     return;
 
+  if(firstBoot)
+  {
+    firstBoot = false;
+    console.log("Ready to detect")
+  }
+
   getCount();
+
+  var th = 180;
 
   if(!readyToDetect)
   {
@@ -37,9 +46,10 @@ setInterval(() => {
     {
       readyToDetect = true;
     }
+
+    return;
   }
 
-  var th = 180;
 
   if(count[0] > th)
   {
