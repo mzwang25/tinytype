@@ -2,7 +2,7 @@ var results = []
 var count = [0,0,0,0,0,0]
 var firstBoot = true
 
-const WINDOW_SIZE = 50;
+const WINDOW_SIZE = 30;
 
 var addResult = (d) => {
   if(results.length >= WINDOW_SIZE) {
@@ -38,7 +38,7 @@ setInterval(() => {
 
   getCount();
 
-  var th = 40;
+  var th = 25;
 
   if(!readyToDetect)
   {
@@ -78,8 +78,9 @@ setInterval(() => {
   }
   else if (count[5] > th) //normal case
   {
+    console.log("ready")
     readyToDetect = true;
   }
 
 
-}, 200)
+}, 20)
