@@ -82,6 +82,11 @@ async function app() {
   }
 }
 
+/**
+ * Save and load borrowed from:
+ * https://github.com/tensorflow/tfjs/issues/633
+ */
+
 var save = () => {
   let dataset = classifier.getClassifierDataset()
   var datasetObj = {}
